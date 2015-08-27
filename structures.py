@@ -1,4 +1,53 @@
-class Loan(object):
+class LoanPurpose(object):
+    DebtConsolidation = "debt_consolidation"
+    Medical = "medical"
+    HomeImprovement = "home_improvement"
+    RenewableEnergy = "renewable_energy"
+    SmallBusiness = "small_business"
+    Wedding = "wedding"
+    Vacation = "vacation"
+    Moving = "moving"
+    House = "house"
+    Car = "car"
+    MajorPurchase = "major_purchase"
+    CreditCard = "credit_card"
+    Other = "other"
+
+class OwnedNote(object):
+    def __init__(self, data):
+        self.LoanStatus = data["loanStatus"]
+        self.LoanId = data["loanId"]
+        self.PortfolioName = data["portfolioName"]
+        self.NoteId = data["noteId"]
+        self.Grade = data["grade"]
+        self.LoanAmount = data["loanAmount"]
+        self.AccruedInterest = data["accruedInterest"]
+        self.NoteAmount = data["noteAmount"]
+        self.Purpose = data["purpose"]
+        self.InterestRate = data["interestRate"]
+        self.PortfolioId = data["portfolioId"]
+        self.OrderId = data["orderId"]
+        self.LoanLength = data["loanLength"]
+        self.IssueDate = data["issueDate"]
+        self.OrderDate = data["orderDate"]
+        self.LoanStatusDate = data["loanStatusDate"]
+        self.CreditTrend = data["creditTrend"]
+        self.CurrentPaymentStatus = data["currentPaymentStatus"]
+        self.CanBeTraded = data["canBeTraded"]
+        self.PaymentsReceived = data["paymentsReceived"]
+        self.NextPaymentDate = data["nextPaymentDate"]
+        self.PrincipalPending = data["principalPending"]
+        self.InterestPending = data["interestPending"]
+        self.InterestReceived = data["interestReceived"]
+        self.PrincipalReceived = data["principalReceived"]
+
+    def __str__(self):
+        return "id: {id}; loan amount: {loanAmount:5}; note amount: {noteAmount}".format(**{"id": self.LoanId, "loanAmount": self.LoanAmount, "noteAmount": self.NoteAmount})
+
+    def __repr__(self):
+        return "<OwnedNote: {0}>".format(str(self))
+
+class ListedLoan(object):
     def __init__(self, data):
         self.Id = data["id"]
         self.MemberId = data["memberId"]
@@ -87,7 +136,7 @@ class Loan(object):
         self.LoanAmount = data["loanAmount"]
 
     def __str__(self):
-        return "id: {id}; member id: {memberId}; amount: {loanAmount}".format(**{"id": self.Id, "memberId": self.MemberId, "loanAmount": self.LoanAmount})
+        return "id: {id}; member id: {memberId}; loan amount: {loanAmount}".format(**{"id": self.Id, "memberId": self.MemberId, "loanAmount": self.LoanAmount})
 
     def __repr__(self):
-        return "<Loan: {0}>".format(str(self))
+        return "<ListedLoan: {0}>".format(str(self))
